@@ -80,6 +80,20 @@ echo "I'm {$user["firstname"]} {$user["lastname"]}, 44th POTUS.";
 
 echo "<h2>Exercice 8 :<h2><br>";
 
+$users = [
+    [
+        "firstName" => "Mari",
+        "lastName" => "Doucet"
+    ],
+    [
+        "firstName" => "Hugues",
+        "lastName" => "Froger"
+    ]
+];
 
+foreach($users as $user)
+{
+    echo "{$user["firstName"]} {$user["lastName"]}<br>";
+}
     
 ?>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">  
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <title>PHP jour 1</title>
+    </head>
+    <body>
+        <?php 
+            $students = [
+                [
+                    "firstName" => "James",
+                    "lastName" => "Fields",
+                    "grades" => [12, 11, 15],
+                    "average" => -1
+                ],
+                [
+                    "firstName" => "Richard",
+                    "lastName" => "Stein",
+                    "grades" => [18, 12, 13],
+                    "average" => -1
+                ],
+                [
+                    "firstName" => "Mark",
+                    "lastName" => "Hartoff",
+                    "grades" => [9, 11, 10],
+                    "average" => -1
+                ],
+                [
+                    "firstName" => "Thomas",
+                    "lastName" => "Nestle",
+                    "grades" => [9, 8, 5],
+                    "average" => -1
+                ],
+                [
+                    "firstName" => "Jeremy",
+                    "lastName" => "Brent",
+                    "grades" => [18, 15, 16],
+                    "average" => -1
+                ]
+            ];
+            
+            
+                    
+            function calculateAverage(array $array) : float
+            {
+                $total = 0;
+                    
+                foreach($array as $keyValue){
+                    
+                    $total += $keyValue;
+                }
+                
+                return round($total/count($array), 1);
+            }
+            
+            function defineClass(float $studentAverage) : string
+            {
+                
+                if($studentAverage < 10){
+                    
+                    return "red";
+                    
+                }else if($studentAverage >= 10 && $studentAverage < 13){
+                    
+                    return "orange";
+                    
+                }else{
+                    
+                    return "green";
+                }
+            }
+        ?>
+            
+        <?php foreach($students as $student){ ?>
+                
+                    <article class='
+                    <?php echo defineClass(calculateAverage($student["grades"])); ?>
+                    '>
+                        <header>
+                            <h1><?php echo "{$student["firstName"]} {$student["lastName"]}"?></h1>
+                        </header>
+                        <section>
+                            <h2>Notes : </h2>
+                            <ul>
+                                <?php
+                                foreach($student["grades"] as $grade){ ?>
+                                    
+                                    <li><?php echo $grade?></li>
+                                 <?php   }    ?>
+                            </ul>
+                        </section>
+                        <footer>
+                            <h3>Moyenne des notes de l'étudiant : 
+                                <?php 
+                                    echo calculateAverage($student["grades"]);
+                                ?> 
+                            </h3>
+                        </footer>
+                    </article>
+        <?php   }    ?>
+        
+    </body>
+</html>

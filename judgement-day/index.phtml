@@ -1,0 +1,110 @@
+<?php
+
+    function generateName() : string
+    {
+        
+        function randLetter()
+        {
+            $int = rand(0,25);
+            $a_z = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            $rand_letter = $a_z[$int];
+            return $rand_letter;
+        }
+        
+        $name = randLetter().randLetter()."-".(string) rand(1000,9999);
+        
+        return $name;
+    }
+    
+    function reverseName($name) : string
+    {
+        
+        return strrev($name);
+    }
+    
+    function setDate(){
+        
+        date_default_timezone_set('UTC');
+        
+        return date("Y-m-d H:i:s");
+    }
+    
+    function randomNumber() : string
+    {
+        
+        $randomNbr = rand(0,10);
+        
+        function evenOdd(int $nbr) : string
+        {
+            
+            if($nbr%2 === 0){
+                
+                return "pair";
+            }else{
+                
+                return "impair";
+            }
+        }
+        
+        return "J'ai choisi le nombre ".$randomNbr.". C'est un nombre ".evenOdd($randomNbr)." !";
+    }
+    
+    function judgement() : string
+    {
+        $randomNbr = rand(1,3);
+        
+        if($randomNbr < 3){
+            
+            return " Vous voulez un café ? ";
+            
+        }else{
+            
+            return " Extermination ! Extermination ! ";
+        }
+    }
+    
+    function guessNumber($nbr) : string
+    {
+        
+        for($i=0; $i<1000; $i++){
+            
+            if($i === $nbr){
+                
+                return "J'ai trouvé le nombre mystère, il s'agit de ".$i;
+                break;
+            }
+        }
+    }
+    
+?>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">  
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css" type="text/css" />
+        <title>PHP jour 1</title>
+    </head>
+    <body>
+        <?php
+        
+        $botName = generateName();
+        $numberToGuess = rand(0, 1000);
+        
+        echo $numberToGuess;
+        echo "<br>";
+        echo "Salut, humain. Je suis {$botName}. Nous sommes le ".setDate().".";
+        echo "<br>";
+        echo randomNumber();
+        echo "<br>";
+        echo " Mon nom à l'envers s'écrit ".reverseName($botName)." 5432-XV. Ah. Ah. Ah. ";
+        echo "<br>";
+        echo judgement();
+        echo "<br>";
+        echo guessNumber($numberToGuess);
+        ?>
+    </body>
+</html>
